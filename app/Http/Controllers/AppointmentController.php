@@ -255,6 +255,28 @@ class AppointmentController extends Controller
     }
     public function store(Request $request)
     {
+
+
+        // $validator = Validator::make($request->all(), [
+        //     'ar_name' => 'required|string|max:255',
+        //     'en_name' => 'required|string|max:255',
+        //     'academic_num' => 'required|string|max:255',
+        //     'email' => 'required|email|unique:duplicated_emails,email_address',
+        //     'phone' => 'required|string|max:255',
+        //     'country' => 'required|string|max:255',
+        //     'city' => 'required|string|max:255',
+        //     'diploma' => 'required|string',
+        //     'action' => 'required|string',
+        //     'duplicated_appointment_date' => 'required_if:action,duplicated|date',
+        //     'test_type' => 'required_if:action,new|string',
+         
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return response()->json([
+        //         'errors' => $validator->errors()
+        //     ], 422); 
+        // }
         // dd($request->all());
         $appointment = duplicated_appointment::where('appointment_date', $request->duplicated_appointment_date)->first();
         $email = duplicated_email::where('email_address', $request['email'])->first();
