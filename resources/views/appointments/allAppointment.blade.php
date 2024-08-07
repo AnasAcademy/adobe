@@ -166,7 +166,7 @@
                 Session::has('photo_confirmation_message') ||
                 Session::has('design_confirmation_message'))
             @if (Session::has('ill_confirmation_message'))
-                 <div class="overflow-hidden">
+                <div class="overflow-hidden">
                     <p class="alert alert-success my-3 mx-3">
                         {{ Session::get('ill_confirmation_message') }}
                     </p>
@@ -174,7 +174,7 @@
             @endif
 
             @if (Session::has('photo_confirmation_message'))
-                 <div class="overflow-hidden">
+                <div class="overflow-hidden">
                     <p class="alert alert-success my-3 mx-3">
                         {{ Session::get('photo_confirmation_message') }}
                     </p>
@@ -182,7 +182,7 @@
             @endif
 
             @if (Session::has('design_confirmation_message'))
-                 <div class="overflow-hidden">
+                <div class="overflow-hidden">
                     <p class="alert alert-success my-3 mx-3">
                         {{ Session::get('design_confirmation_message') }}
                     </p>
@@ -312,7 +312,7 @@
                             <input class="form-check-input" type="radio" name="diploma"
                                 value="دبلوم عالي في الرسوم المتحركة ومؤثرات الصوت والفيديو" id="flexRadioDefault30">
                             <label class="form-check-label mr-4" for="flexRadioDefault30">
-                               دبلوم عالي في الرسوم المتحركة ومؤثرات الصوت والفيديو
+                                دبلوم عالي في الرسوم المتحركة ومؤثرات الصوت والفيديو
                             </label>
                         </div>
 
@@ -321,7 +321,7 @@
                                 value="دبلوم عالي في التصميم المرئي للعلامة التجارية" id="flexRadioDefault30">
                             <label class="form-check-label mr-4" for="flexRadioDefault30">
                                 دبلوم عالي في التصميم المرئي للعلامة التجارية
-                              </label>
+                            </label>
                         </div>
                     </div>
 
@@ -449,7 +449,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label>إقرار *</label>
-                        <div class="">
+                        {{-- <div class="">
                             <input class="form-check-input " type="checkbox" name="Endorsement1" value="1"
                                 id="defaultCheck1">
                             <label class="form-check-label mr-4" for="defaultCheck1">أقر بأني أعلم أنه لن يتم اعتماد
@@ -460,7 +460,7 @@
                             <div class="alert alert-danger">
                                 {{ $errors->first('Endorsement1') }}
                             </div>
-                        @endif
+                        @endif --}}
                         <div class="">
                             <input class="form-check-input " type="checkbox" name="Endorsement2" value="1"
                                 id="defaultCheck2">
@@ -671,7 +671,7 @@
     </script>
     <!--///////////payment////////////-->
     <script>
-         $.ajaxSetup({
+        $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -693,26 +693,28 @@
 
             var action = document.querySelector('input[name="action"]:checked')?.value ?? "";
             if (data.status) {
+                console.log(data);
+
                 let form_data = JSON.parse(data.formDateJsonString);
                 if (action == 'new') {
                     document.getElementById("payment-form").action = "/stripe/callback";
-                     document.getElementById("payment-form").submit();
-                //     $.ajax({
-                //         url: '/stripe/callback',
-                //         type: 'POST',
-                //         data: {
-                //             form_data: form_data,
-                //         },
-                //         success: function(response) {
-                //             console.log('Cookie set successfully');
-                //         },
-                //         error: function(xhr, status, error) {
-                //             console.error('Error setting cookie:', error);
-                //         }
-                //     });
-                //     // location.reload();
-                //     resetErrors();
-                //   document.getElementById("payment-form").reset();
+                    document.getElementById("payment-form").submit();
+                    //     $.ajax({
+                    //         url: '/stripe/callback',
+                    //         type: 'POST',
+                    //         data: {
+                    //             form_data: form_data,
+                    //         },
+                    //         success: function(response) {
+                    //             console.log('Cookie set successfully');
+                    //         },
+                    //         error: function(xhr, status, error) {
+                    //             console.error('Error setting cookie:', error);
+                    //         }
+                    //     });
+                    //     // location.reload();
+                    //     resetErrors();
+                    //   document.getElementById("payment-form").reset();
 
                 } else if (action == 'duplicated') {
                     document.getElementById("payment-form").submit();
@@ -733,174 +735,102 @@
                 document.querySelector("#button-text").style.display = "inline";
             }
         }
-        // async function form_value() {
-        //     var formDate = new FormData();
-        //     var ar_name = document.getElementsByName('ar_name')[0];
-        //     var en_name = document.getElementsByName('en_name')[0];
-        //     var academic_num = document.getElementsByName('academic_num')[0];
-        //     var email = document.getElementsByName('email')[0];
-        //     var phone = document.getElementsByName('phone')[0];
-        //     var country = document.getElementsByName('country')[0];
-        //     var city = document.getElementsByName('city')[0];
-        //     var diploma = document.querySelector('input[name="diploma"]:checked');
-        //     var test_type = document.querySelector('input[name="test_type"]:checked');
-        //     var action = document.querySelector('input[name="action"]:checked');
-        //     var photoshop_appointment_date = document.getElementsByName('photoshop_appointment_date')[0];
-        //     var illustrator_appointment_date = document.getElementsByName('illustrator_appointment_date')[0];
-        //     var design_appointment_date = document.getElementsByName('design_appointment_date')[0];
-        //     var duplicated_appointment_date = document.getElementsByName('duplicated_appointment_date')[0];
-        //     // var endorsement1 = document.getElementsByName('Endorsement1')[0];
-        //     var endorsement2 = document.getElementsByName('Endorsement2')[0];
-        //     var endorsement3 = document.getElementsByName('Endorsement3')[0];
-        //     var endorsement4 = document.getElementsByName('Endorsement4')[0];
-        //     var endorsement5 = document.getElementsByName('Endorsement5')[0];
-        //     formDate.append("ar_name", ar_name.value.trim());
-        //     formDate.append("en_name", en_name.value.trim());
-        //     formDate.append("academic_num", academic_num.value.trim());
-        //     formDate.append("email", email.value.trim());
-        //     formDate.append("phone", phone.value.trim());
-        //     formDate.append("country", country.value.trim());
-        //     formDate.append("city", city.value.trim());
-        //     formDate.append("diploma", diploma?.value ?? "");
-        //     formDate.append("test_type", test_type?.value ?? "");
-        //     formDate.append("action", action?.value ?? "");
-        //     formDate.append("photoshop_appointment_date", photoshop_appointment_date.value);
-        //     formDate.append("illustrator_appointment_date", illustrator_appointment_date.value);
-        //     formDate.append("design_appointment_date", design_appointment_date.value);
-        //     formDate.append("duplicated_appointment_date", duplicated_appointment_date.value);
-        //     // formDate.append("Endorsement1", endorsement1.checked ? 1 : 0);
-        //     formDate.append("Endorsement2", endorsement2.checked ? 1 : 0);
-        //     formDate.append("Endorsement3", endorsement3.checked ? 1 : 0);
-        //     formDate.append("Endorsement4", endorsement4.checked ? 1 : 0);
-        //     formDate.append("Endorsement5", endorsement5.checked ? 1 : 0);
-        //     // formDate.append("_token", '{{ csrf_token() }}');
-        //     console.log(formDate);
-        //     try {
-
-        //         let response = await fetch('{{ route('validation') }}', {
-        //             method: 'POST',
-        //             headers: {
-        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //             },
-        //             body: formDate
-        //         })
-
-        //         let data = await response.json();
-        //         console.log(data)
-        //         if (data.errors) {
-        //             let errors = data.errors;
-        //             show_errors(errors)
-        //             return {
-        //                 status: false
-        //             }
-        //         } else {
-        //             var formDateJson = {};
-        //             formDate.forEach(function(value, key) {
-        //                 formDateJson[key] = value;
-        //             });
-        //             var formDateJsonString = JSON.stringify(formDateJson);
-        //             // $.ajax({
-        //             //     url: '/set-cookie',
-        //             //     type: 'POST',
-        //             //     data: {
-        //             //         formdatacookie: formDateJsonString,
-        //             //         _token: '{{ csrf_token() }}'
-        //             //     },
-        //             //     success: function(response) {
-        //             //         console.log('Cookie set successfully');
-        //             //     },
-        //             //     error: function(xhr, status, error) {
-        //             //         console.error('Error setting cookie:', error);
-        //             //     }
-        //             // });
-
-        //             return {
-        //                 status: true,
-        //                 formDateJsonString,
-        //                 form_data: formDate
-        //             }
-        //         }
-
-        //     } catch (error) {
-        //         console.log(error)
-        //         return {
-        //             status: false
-        //         }
-        //     }
-        //     // return flag
-        // }
-
-
         async function form_value() {
-    var formDate = new FormData();
-    var ar_name = document.getElementsByName('ar_name')[0];
-    var en_name = document.getElementsByName('en_name')[0];
-    var academic_num = document.getElementsByName('academic_num')[0];
-    var email = document.getElementsByName('email')[0];
-    var phone = document.getElementsByName('phone')[0];
-    var country = document.getElementsByName('country')[0];
-    var city = document.getElementsByName('city')[0];
-    var diploma = document.querySelector('input[name="diploma"]:checked');
-    var test_type = document.querySelector('input[name="test_type"]:checked');
-    var action = document.querySelector('input[name="action"]:checked');
-    var photoshop_appointment_date = document.getElementsByName('photoshop_appointment_date')[0];
-    var illustrator_appointment_date = document.getElementsByName('illustrator_appointment_date')[0];
-    var design_appointment_date = document.getElementsByName('design_appointment_date')[0];
-    var duplicated_appointment_date = document.getElementsByName('duplicated_appointment_date')[0];
-    var endorsement2 = document.getElementsByName('Endorsement2')[0];
-    var endorsement3 = document.getElementsByName('Endorsement3')[0];
-    var endorsement4 = document.getElementsByName('Endorsement4')[0];
-    var endorsement5 = document.getElementsByName('Endorsement5')[0];
+            var formDate = new FormData();
+            var ar_name = document.getElementsByName('ar_name')[0];
+            var en_name = document.getElementsByName('en_name')[0];
+            var academic_num = document.getElementsByName('academic_num')[0];
+            var email = document.getElementsByName('email')[0];
+            var phone = document.getElementsByName('phone')[0];
+            var country = document.getElementsByName('country')[0];
+            var city = document.getElementsByName('city')[0];
+            var diploma = document.querySelector('input[name="diploma"]:checked');
+            var test_type = document.querySelector('input[name="test_type"]:checked');
+            var action = document.querySelector('input[name="action"]:checked');
+            var photoshop_appointment_date = document.getElementsByName('photoshop_appointment_date')[0];
+            var illustrator_appointment_date = document.getElementsByName('illustrator_appointment_date')[0];
+            var design_appointment_date = document.getElementsByName('design_appointment_date')[0];
+            var duplicated_appointment_date = document.getElementsByName('duplicated_appointment_date')[0];
+            // var endorsement1 = document.getElementsByName('Endorsement1')[0];
+            var endorsement2 = document.getElementsByName('Endorsement2')[0];
+            var endorsement3 = document.getElementsByName('Endorsement3')[0];
+            var endorsement4 = document.getElementsByName('Endorsement4')[0];
+            var endorsement5 = document.getElementsByName('Endorsement5')[0];
+            formDate.append("ar_name", ar_name.value.trim());
+            formDate.append("en_name", en_name.value.trim());
+            formDate.append("academic_num", academic_num.value.trim());
+            formDate.append("email", email.value.trim());
+            formDate.append("phone", phone.value.trim());
+            formDate.append("country", country.value.trim());
+            formDate.append("city", city.value.trim());
+            formDate.append("diploma", diploma?.value ?? "");
+            formDate.append("test_type", test_type?.value ?? "");
+            formDate.append("action", action?.value ?? "");
+            formDate.append("photoshop_appointment_date", photoshop_appointment_date.value);
+            formDate.append("illustrator_appointment_date", illustrator_appointment_date.value);
+            formDate.append("design_appointment_date", design_appointment_date.value);
+            formDate.append("duplicated_appointment_date", duplicated_appointment_date.value);
+            // formDate.append("Endorsement1", endorsement1.checked ? 1 : 0);
+            formDate.append("Endorsement2", endorsement2.checked ? 1 : 0);
+            formDate.append("Endorsement3", endorsement3.checked ? 1 : 0);
+            formDate.append("Endorsement4", endorsement4.checked ? 1 : 0);
+            formDate.append("Endorsement5", endorsement5.checked ? 1 : 0);
+            // formDate.append("_token", '{{ csrf_token() }}');
+            console.log(formDate);
+            try {
 
-    formDate.append("ar_name", ar_name.value.trim());
-    formDate.append("en_name", en_name.value.trim());
-    formDate.append("academic_num", academic_num.value.trim());
-    formDate.append("email", email.value.trim());
-    formDate.append("phone", phone.value.trim());
-    formDate.append("country", country.value.trim());
-    formDate.append("city", city.value.trim());
-    formDate.append("diploma", diploma?.value ?? "");
-    formDate.append("test_type", test_type?.value ?? "");
-    formDate.append("action", action?.value ?? "");
-    formDate.append("photoshop_appointment_date", photoshop_appointment_date?.value ?? "");
-    formDate.append("illustrator_appointment_date", illustrator_appointment_date?.value ?? "");
-    formDate.append("design_appointment_date", design_appointment_date?.value ?? "");
-    formDate.append("duplicated_appointment_date", duplicated_appointment_date?.value ?? "");
-    formDate.append("Endorsement2", endorsement2.checked ? 1 : 0);
-    formDate.append("Endorsement3", endorsement3.checked ? 1 : 0);
-    formDate.append("Endorsement4", endorsement4.checked ? 1 : 0);
-    formDate.append("Endorsement5", endorsement5.checked ? 1 : 0);
+                let response = await fetch('{{ route('validation') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    body: formDate
+                })
 
-    try {
-        let response = await fetch('{{ route('validation') }}', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            body: formDate
-        });
+                let data = await response.json();
+                console.log(data)
+                if (data.errors) {
+                    let errors = data.errors;
+                    show_errors(errors)
+                    return {
+                        status: false
+                    }
+                } else {
+                    var formDateJson = {};
+                    formDate.forEach(function(value, key) {
+                        formDateJson[key] = value;
+                    });
+                    var formDateJsonString = JSON.stringify(formDateJson);
+                    // $.ajax({
+                    //     url: '/set-cookie',
+                    //     type: 'POST',
+                    //     data: {
+                    //         formdatacookie: formDateJsonString,
+                    //         _token: '{{ csrf_token() }}'
+                    //     },
+                    //     success: function(response) {
+                    //         console.log('Cookie set successfully');
+                    //     },
+                    //     error: function(xhr, status, error) {
+                    //         console.error('Error setting cookie:', error);
+                    //     }
+                    // });
 
-        let data = await response.json();
+                    return {
+                        status: true,
+                        formDateJsonString,
+                        form_data: formDate
+                    }
+                }
 
-        if (data.errors) {
-            show_errors(data.errors);
-            return {
-                status: false
-            };
-        } else {
-            return {
-                status: true
-            };
+            } catch (error) {
+                console.log(error)
+                return {
+                    status: false
+                }
+            }
+            // return flag
         }
-
-    } catch (error) {
-        console.log(error);
-        return {
-            status: false
-        };
-    }
-}
-
 
         function resetErrors() {
             var errorElements = document.querySelectorAll('.invalid-feedback');
@@ -914,7 +844,7 @@
             });
 
             var errorContainer = document.getElementById('errorMessages');
-             errorContainer.innerHTML = "";
+            errorContainer.innerHTML = "";
 
         }
 
@@ -924,33 +854,29 @@
         //         `<div style="color: red;">${message}</div>`).join('');
         // }
         function show_errors(errors) {
-    // Remove any existing error messages
-    document.querySelectorAll('.error-message').forEach(el => el.remove());
+            // Remove any existing error messages
+            document.querySelectorAll('.error-message').forEach(el => el.remove());
 
-    for (const [key, value] of Object.entries(errors)) {
-        const input = document.querySelector(`[name="${key}"]`);
-        if (input) {
-            // Create a new error message element
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message'; // Add a class for easy reference
-            errorDiv.style.color = 'red';
-            errorDiv.style.fontSize = '0.875em'; // Optional: smaller font size
-            errorDiv.textContent = value[0];
-            // Insert the error message after the input element
-            input.closest('div').insertAdjacentElement('afterend', errorDiv);
-            // console.log(input.closest('div'));
-            // console.log(input);
+            for (const [key, value] of Object.entries(errors)) {
+                const input = document.querySelector(`[name="${key}"]`);
+                if (input) {
+                    // Create a new error message element
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-message'; // Add a class for easy reference
+                    errorDiv.style.color = 'red';
+                    errorDiv.style.fontSize = '0.875em'; // Optional: smaller font size
+                    errorDiv.textContent = value[0];
+                    // Insert the error message after the input element
+                    input.closest('div').insertAdjacentElement('afterend', errorDiv);
+                    // console.log(input.closest('div'));
+                    // console.log(input);
 
 
+                }
+            }
         }
-    }
-}
 
 
-
-        function showMessage(message){
-
-        }
     </script>
 
 </body>
