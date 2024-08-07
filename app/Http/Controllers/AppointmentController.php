@@ -48,6 +48,7 @@ class AppointmentController extends Controller
         $isTableNotEmpty = $appointments->isNotEmpty();
         return view('dashboard.allAppointment', ['appointments' => $appointments, 'isTableNotEmpty' => $isTableNotEmpty]);
     }
+
     public function deleteAllAppointment()
     {
 
@@ -55,6 +56,8 @@ class AppointmentController extends Controller
         Session::flash('success', 'تم حذف جميع االايميلات بنجاح.');
         return redirect()->back();
     }
+
+    
     public function exportAppointmentsToExcel()
     {
         $appointments = Appointment::all(); // Replace YourModel with the actual model you're using

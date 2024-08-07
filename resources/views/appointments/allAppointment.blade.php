@@ -448,7 +448,7 @@
                         </div>
                     </div>
                     <div class="form-group mb-3">
-                        <label>إقرار *</label>
+                        <p>إقرار *</p>
                         {{-- <div class="">
                             <input class="form-check-input " type="checkbox" name="Endorsement1" value="1"
                                 id="defaultCheck1">
@@ -461,7 +461,7 @@
                                 {{ $errors->first('Endorsement1') }}
                             </div>
                         @endif --}}
-                        <div class="">
+                        
                             <input class="form-check-input " type="checkbox" name="Endorsement2" value="1"
                                 id="defaultCheck2">
                             <label class="form-check-label mr-4" for="defaultCheck1">
@@ -469,13 +469,13 @@
                                 المسجل في الموقع هو بريدي الشخصي وأنه مسجل بصورة صحيحة (في حال الرسوب يصل كود الإعادة
                                 على
                                 بريد المتدرب)</label>
-                        </div>
+                        
                         @if ($errors->has('Endorsement2'))
                             <div class="alert alert-danger">
                                 {{ $errors->first('Endorsement2') }}
                             </div>
                         @endif
-                        <div class="">
+                        <div class="form-group ">
                             <input class="form-check-input" type="checkbox" name="Endorsement3" value="1"
                                 id="defaultCheck3">
                             <label class="form-check-label mr-4" for="defaultCheck1">
@@ -488,7 +488,7 @@
                                 {{ $errors->first('Endorsement3') }}
                             </div>
                         @endif
-                        <div class="">
+                        <div class="form-group ">
                             <input class="form-check-input" type="checkbox" name="Endorsement4" value="1"
                                 id="defaultCheck4">
                             <label class="form-check-label mr-4" for="defaultCheck1">
@@ -927,6 +927,11 @@
     // Remove any existing error messages
     document.querySelectorAll('.error-message').forEach(el => el.remove());
 
+    // Remove 'border-danger' class from all inputs
+    document.querySelectorAll('.form-check-input').forEach(input => {
+        input.classList.remove('border-danger');
+    });
+
     for (const [key, value] of Object.entries(errors)) {
         const input = document.querySelector(`[name="${key}"]`);
         if (input) {
@@ -935,13 +940,21 @@
             errorDiv.className = 'error-message'; // Add a class for easy reference
             errorDiv.style.color = 'red';
             errorDiv.style.fontSize = '0.875em'; // Optional: smaller font size
+            errorDiv.style.marginLeft = '10px'; // Space between checkbox and error message
+            errorDiv.style.display = 'inline'; // Display error message inline
+            errorDiv.style.verticalAlign = 'middle'; // Align with the middle of the checkbox
             errorDiv.textContent = value[0];
-            // Insert the error message after the input element
-            input.closest('div').insertAdjacentElement('afterend', errorDiv);
-            // console.log(input.closest('div'));
-            // console.log(input);
-            
-            
+
+            // Find the label associated with the input
+            const formGroup = input.closest('.form-group');
+            const label = formGroup ? formGroup.querySelector('label') : null;
+            if (label) {
+                // Insert the error message after the label
+                label.insertAdjacentElement('afterend', errorDiv);
+            }
+
+            // Add 'border-danger' class to the input
+            input.classList.add('border-danger');
         }
     }
 }
