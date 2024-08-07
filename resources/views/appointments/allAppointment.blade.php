@@ -304,18 +304,18 @@
                             <input class="form-check-input" type="radio" name="diploma"
                                 value="التصميم المرئي و التفكير التصميمي" id="flexRadioDefault30">
                             <label class="form-check-label mr-4" for="flexRadioDefault30">
-                                التصميم المرئي و التفكير التصميمي 
+                                التصميم المرئي و التفكير التصميمي
                             </label>
                         </div>
-                        
+
                         <div>
                             <input class="form-check-input" type="radio" name="diploma"
                                 value="دبلوم عالي في الرسوم المتحركة ومؤثرات الصوت والفيديو" id="flexRadioDefault30">
                             <label class="form-check-label mr-4" for="flexRadioDefault30">
-                               دبلوم عالي في الرسوم المتحركة ومؤثرات الصوت والفيديو 
+                               دبلوم عالي في الرسوم المتحركة ومؤثرات الصوت والفيديو
                             </label>
                         </div>
-                        
+
                         <div>
                             <input class="form-check-input" type="radio" name="diploma"
                                 value="دبلوم عالي في التصميم المرئي للعلامة التجارية" id="flexRadioDefault30">
@@ -733,102 +733,174 @@
                 document.querySelector("#button-text").style.display = "inline";
             }
         }
+        // async function form_value() {
+        //     var formDate = new FormData();
+        //     var ar_name = document.getElementsByName('ar_name')[0];
+        //     var en_name = document.getElementsByName('en_name')[0];
+        //     var academic_num = document.getElementsByName('academic_num')[0];
+        //     var email = document.getElementsByName('email')[0];
+        //     var phone = document.getElementsByName('phone')[0];
+        //     var country = document.getElementsByName('country')[0];
+        //     var city = document.getElementsByName('city')[0];
+        //     var diploma = document.querySelector('input[name="diploma"]:checked');
+        //     var test_type = document.querySelector('input[name="test_type"]:checked');
+        //     var action = document.querySelector('input[name="action"]:checked');
+        //     var photoshop_appointment_date = document.getElementsByName('photoshop_appointment_date')[0];
+        //     var illustrator_appointment_date = document.getElementsByName('illustrator_appointment_date')[0];
+        //     var design_appointment_date = document.getElementsByName('design_appointment_date')[0];
+        //     var duplicated_appointment_date = document.getElementsByName('duplicated_appointment_date')[0];
+        //     // var endorsement1 = document.getElementsByName('Endorsement1')[0];
+        //     var endorsement2 = document.getElementsByName('Endorsement2')[0];
+        //     var endorsement3 = document.getElementsByName('Endorsement3')[0];
+        //     var endorsement4 = document.getElementsByName('Endorsement4')[0];
+        //     var endorsement5 = document.getElementsByName('Endorsement5')[0];
+        //     formDate.append("ar_name", ar_name.value.trim());
+        //     formDate.append("en_name", en_name.value.trim());
+        //     formDate.append("academic_num", academic_num.value.trim());
+        //     formDate.append("email", email.value.trim());
+        //     formDate.append("phone", phone.value.trim());
+        //     formDate.append("country", country.value.trim());
+        //     formDate.append("city", city.value.trim());
+        //     formDate.append("diploma", diploma?.value ?? "");
+        //     formDate.append("test_type", test_type?.value ?? "");
+        //     formDate.append("action", action?.value ?? "");
+        //     formDate.append("photoshop_appointment_date", photoshop_appointment_date.value);
+        //     formDate.append("illustrator_appointment_date", illustrator_appointment_date.value);
+        //     formDate.append("design_appointment_date", design_appointment_date.value);
+        //     formDate.append("duplicated_appointment_date", duplicated_appointment_date.value);
+        //     // formDate.append("Endorsement1", endorsement1.checked ? 1 : 0);
+        //     formDate.append("Endorsement2", endorsement2.checked ? 1 : 0);
+        //     formDate.append("Endorsement3", endorsement3.checked ? 1 : 0);
+        //     formDate.append("Endorsement4", endorsement4.checked ? 1 : 0);
+        //     formDate.append("Endorsement5", endorsement5.checked ? 1 : 0);
+        //     // formDate.append("_token", '{{ csrf_token() }}');
+        //     console.log(formDate);
+        //     try {
+
+        //         let response = await fetch('{{ route('validation') }}', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //             },
+        //             body: formDate
+        //         })
+
+        //         let data = await response.json();
+        //         console.log(data)
+        //         if (data.errors) {
+        //             let errors = data.errors;
+        //             show_errors(errors)
+        //             return {
+        //                 status: false
+        //             }
+        //         } else {
+        //             var formDateJson = {};
+        //             formDate.forEach(function(value, key) {
+        //                 formDateJson[key] = value;
+        //             });
+        //             var formDateJsonString = JSON.stringify(formDateJson);
+        //             // $.ajax({
+        //             //     url: '/set-cookie',
+        //             //     type: 'POST',
+        //             //     data: {
+        //             //         formdatacookie: formDateJsonString,
+        //             //         _token: '{{ csrf_token() }}'
+        //             //     },
+        //             //     success: function(response) {
+        //             //         console.log('Cookie set successfully');
+        //             //     },
+        //             //     error: function(xhr, status, error) {
+        //             //         console.error('Error setting cookie:', error);
+        //             //     }
+        //             // });
+
+        //             return {
+        //                 status: true,
+        //                 formDateJsonString,
+        //                 form_data: formDate
+        //             }
+        //         }
+
+        //     } catch (error) {
+        //         console.log(error)
+        //         return {
+        //             status: false
+        //         }
+        //     }
+        //     // return flag
+        // }
+
+
         async function form_value() {
-            var formDate = new FormData();
-            var ar_name = document.getElementsByName('ar_name')[0];
-            var en_name = document.getElementsByName('en_name')[0];
-            var academic_num = document.getElementsByName('academic_num')[0];
-            var email = document.getElementsByName('email')[0];
-            var phone = document.getElementsByName('phone')[0];
-            var country = document.getElementsByName('country')[0];
-            var city = document.getElementsByName('city')[0];
-            var diploma = document.querySelector('input[name="diploma"]:checked');
-            var test_type = document.querySelector('input[name="test_type"]:checked');
-            var action = document.querySelector('input[name="action"]:checked');
-            var photoshop_appointment_date = document.getElementsByName('photoshop_appointment_date')[0];
-            var illustrator_appointment_date = document.getElementsByName('illustrator_appointment_date')[0];
-            var design_appointment_date = document.getElementsByName('design_appointment_date')[0];
-            var duplicated_appointment_date = document.getElementsByName('duplicated_appointment_date')[0];
-            var endorsement1 = document.getElementsByName('Endorsement1')[0];
-            var endorsement2 = document.getElementsByName('Endorsement2')[0];
-            var endorsement3 = document.getElementsByName('Endorsement3')[0];
-            var endorsement4 = document.getElementsByName('Endorsement4')[0];
-            var endorsement5 = document.getElementsByName('Endorsement5')[0];
-            formDate.append("ar_name", ar_name.value.trim());
-            formDate.append("en_name", en_name.value.trim());
-            formDate.append("academic_num", academic_num.value.trim());
-            formDate.append("email", email.value.trim());
-            formDate.append("phone", phone.value.trim());
-            formDate.append("country", country.value.trim());
-            formDate.append("city", city.value.trim());
-            formDate.append("diploma", diploma?.value ?? "");
-            formDate.append("test_type", test_type?.value ?? "");
-            formDate.append("action", action?.value ?? "");
-            formDate.append("photoshop_appointment_date", photoshop_appointment_date.value);
-            formDate.append("illustrator_appointment_date", illustrator_appointment_date.value);
-            formDate.append("design_appointment_date", design_appointment_date.value);
-            formDate.append("duplicated_appointment_date", duplicated_appointment_date.value);
-            formDate.append("Endorsement1", endorsement1.checked ? 1 : 0);
-            formDate.append("Endorsement2", endorsement2.checked ? 1 : 0);
-            formDate.append("Endorsement3", endorsement3.checked ? 1 : 0);
-            formDate.append("Endorsement4", endorsement4.checked ? 1 : 0);
-            formDate.append("Endorsement5", endorsement5.checked ? 1 : 0);
-            // formDate.append("_token", '{{ csrf_token() }}');
-            console.log(formDate);
-            try {
+    var formDate = new FormData();
+    var ar_name = document.getElementsByName('ar_name')[0];
+    var en_name = document.getElementsByName('en_name')[0];
+    var academic_num = document.getElementsByName('academic_num')[0];
+    var email = document.getElementsByName('email')[0];
+    var phone = document.getElementsByName('phone')[0];
+    var country = document.getElementsByName('country')[0];
+    var city = document.getElementsByName('city')[0];
+    var diploma = document.querySelector('input[name="diploma"]:checked');
+    var test_type = document.querySelector('input[name="test_type"]:checked');
+    var action = document.querySelector('input[name="action"]:checked');
+    var photoshop_appointment_date = document.getElementsByName('photoshop_appointment_date')[0];
+    var illustrator_appointment_date = document.getElementsByName('illustrator_appointment_date')[0];
+    var design_appointment_date = document.getElementsByName('design_appointment_date')[0];
+    var duplicated_appointment_date = document.getElementsByName('duplicated_appointment_date')[0];
+    var endorsement2 = document.getElementsByName('Endorsement2')[0];
+    var endorsement3 = document.getElementsByName('Endorsement3')[0];
+    var endorsement4 = document.getElementsByName('Endorsement4')[0];
+    var endorsement5 = document.getElementsByName('Endorsement5')[0];
 
-                let response = await fetch('{{ route('validation') }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    body: formDate
-                })
+    formDate.append("ar_name", ar_name.value.trim());
+    formDate.append("en_name", en_name.value.trim());
+    formDate.append("academic_num", academic_num.value.trim());
+    formDate.append("email", email.value.trim());
+    formDate.append("phone", phone.value.trim());
+    formDate.append("country", country.value.trim());
+    formDate.append("city", city.value.trim());
+    formDate.append("diploma", diploma?.value ?? "");
+    formDate.append("test_type", test_type?.value ?? "");
+    formDate.append("action", action?.value ?? "");
+    formDate.append("photoshop_appointment_date", photoshop_appointment_date?.value ?? "");
+    formDate.append("illustrator_appointment_date", illustrator_appointment_date?.value ?? "");
+    formDate.append("design_appointment_date", design_appointment_date?.value ?? "");
+    formDate.append("duplicated_appointment_date", duplicated_appointment_date?.value ?? "");
+    formDate.append("Endorsement2", endorsement2.checked ? 1 : 0);
+    formDate.append("Endorsement3", endorsement3.checked ? 1 : 0);
+    formDate.append("Endorsement4", endorsement4.checked ? 1 : 0);
+    formDate.append("Endorsement5", endorsement5.checked ? 1 : 0);
 
-                let data = await response.json();
-                console.log(data)
-                if (data.errors) {
-                    let errors = data.errors;
-                    show_errors(errors)
-                    return {
-                        status: false
-                    }
-                } else {
-                    var formDateJson = {};
-                    formDate.forEach(function(value, key) {
-                        formDateJson[key] = value;
-                    });
-                    var formDateJsonString = JSON.stringify(formDateJson);
-                    // $.ajax({
-                    //     url: '/set-cookie',
-                    //     type: 'POST',
-                    //     data: {
-                    //         formdatacookie: formDateJsonString,
-                    //         _token: '{{ csrf_token() }}'
-                    //     },
-                    //     success: function(response) {
-                    //         console.log('Cookie set successfully');
-                    //     },
-                    //     error: function(xhr, status, error) {
-                    //         console.error('Error setting cookie:', error);
-                    //     }
-                    // });
+    try {
+        let response = await fetch('{{ route('validation') }}', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            body: formDate
+        });
 
-                    return {
-                        status: true,
-                        formDateJsonString,
-                        form_data: formDate
-                    }
-                }
+        let data = await response.json();
 
-            } catch (error) {
-                console.log(error)
-                return {
-                    status: false
-                }
-            }
-            // return flag
+        if (data.errors) {
+            show_errors(data.errors);
+            return {
+                status: false
+            };
+        } else {
+            return {
+                status: true
+            };
         }
+
+    } catch (error) {
+        console.log(error);
+        return {
+            status: false
+        };
+    }
+}
+
 
         function resetErrors() {
             var errorElements = document.querySelectorAll('.invalid-feedback');
@@ -840,21 +912,44 @@
             inputElements.forEach(function(inputElement) {
                 inputElement.classList.remove('is-invalid');
             });
-            
+
             var errorContainer = document.getElementById('errorMessages');
              errorContainer.innerHTML = "";
-            
+
         }
 
+        // function show_errors(errors) {
+        //     var errorContainer = document.getElementById('errorMessages');
+        //     errorContainer.innerHTML = Object.values(errors).flat().map(message =>
+        //         `<div style="color: red;">${message}</div>`).join('');
+        // }
         function show_errors(errors) {
-            var errorContainer = document.getElementById('errorMessages');
-            errorContainer.innerHTML = Object.values(errors).flat().map(message =>
-                `<div style="color: red;">${message}</div>`).join('');
+    // Remove any existing error messages
+    document.querySelectorAll('.error-message').forEach(el => el.remove());
+
+    for (const [key, value] of Object.entries(errors)) {
+        const input = document.querySelector(`[name="${key}"]`);
+        if (input) {
+            // Create a new error message element
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message'; // Add a class for easy reference
+            errorDiv.style.color = 'red';
+            errorDiv.style.fontSize = '0.875em'; // Optional: smaller font size
+            errorDiv.textContent = value[0];
+            // Insert the error message after the input element
+            input.closest('div').insertAdjacentElement('afterend', errorDiv);
+            // console.log(input.closest('div'));
+            // console.log(input);
+
+
         }
-        
-        
+    }
+}
+
+
+
         function showMessage(message){
-            
+
         }
     </script>
 
