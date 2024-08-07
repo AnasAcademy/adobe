@@ -93,9 +93,8 @@ class AppointmentController extends Controller
                 'clientSecret' => $paymentIntent->client_secret
             ];
 
-        } catch (\Exception $e) {
-            // console . log($e);
-            dd($e);
+        } catch (Exception $e) {
+            console . log($e);
         }
     }
 
@@ -237,7 +236,7 @@ class AppointmentController extends Controller
                     }
                 },
             ],
-            // 'Endorsement1' => 'accepted',
+            'Endorsement1' => 'accepted',
             'Endorsement2' => 'accepted',
             'Endorsement3' => 'accepted',
             'Endorsement4' => 'accepted',
@@ -268,7 +267,7 @@ class AppointmentController extends Controller
             'illustrator_appointment_date.required_if' => 'The Illustrator appointment date field is required when test type is Illustrator.',
             'design_appointment_date.required_if' => 'The design appointment date field is required when test type is Design.',
             'duplicated_appointment_date.required_if' => 'The duplicated appointment date field is required when action is duplicated.',
-            // 'Endorsement1.accepted' => 'You must accept the first endorsement.',
+            'Endorsement1.accepted' => 'You must accept the first endorsement.',
             'Endorsement2.accepted' => 'You must accept the second endorsement.',
             'Endorsement3.accepted' => 'You must accept the third endorsement.',
             'Endorsement4.accepted' => 'You must accept the forth endorsement.',

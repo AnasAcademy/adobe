@@ -449,18 +449,18 @@
                     </div>
                     <div class="form-group mb-3">
                         <label>إقرار *</label>
-                        {{-- <div class="">
+                        <div class="">
                             <input class="form-check-input " type="checkbox" name="Endorsement1" value="1"
                                 id="defaultCheck1">
                             <label class="form-check-label mr-4" for="defaultCheck1">أقر بأني أعلم أنه لن يتم اعتماد
                                 أي حجز أو
                                 جدولته عند الحجز بغير البريد الأكاديمي الذي تم التسجيل به في نموذج 99</label>
-                        </div> --}}
-                        {{-- @if ($errors->has('Endorsement1'))
+                        </div>
+                        @if ($errors->has('Endorsement1'))
                             <div class="alert alert-danger">
                                 {{ $errors->first('Endorsement1') }}
                             </div>
-                        @endif --}}
+                        @endif
                         <div class="">
                             <input class="form-check-input " type="checkbox" name="Endorsement2" value="1"
                                 id="defaultCheck2">
@@ -749,7 +749,7 @@
             var illustrator_appointment_date = document.getElementsByName('illustrator_appointment_date')[0];
             var design_appointment_date = document.getElementsByName('design_appointment_date')[0];
             var duplicated_appointment_date = document.getElementsByName('duplicated_appointment_date')[0];
-            // var endorsement1 = document.getElementsByName('Endorsement1')[0];
+            var endorsement1 = document.getElementsByName('Endorsement1')[0];
             var endorsement2 = document.getElementsByName('Endorsement2')[0];
             var endorsement3 = document.getElementsByName('Endorsement3')[0];
             var endorsement4 = document.getElementsByName('Endorsement4')[0];
@@ -768,7 +768,7 @@
             formDate.append("illustrator_appointment_date", illustrator_appointment_date.value);
             formDate.append("design_appointment_date", design_appointment_date.value);
             formDate.append("duplicated_appointment_date", duplicated_appointment_date.value);
-            // formDate.append("Endorsement1", endorsement1.checked ? 1 : 0);
+            formDate.append("Endorsement1", endorsement1.checked ? 1 : 0);
             formDate.append("Endorsement2", endorsement2.checked ? 1 : 0);
             formDate.append("Endorsement3", endorsement3.checked ? 1 : 0);
             formDate.append("Endorsement4", endorsement4.checked ? 1 : 0);
