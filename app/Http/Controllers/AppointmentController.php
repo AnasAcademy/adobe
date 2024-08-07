@@ -239,7 +239,7 @@ class AppointmentController extends Controller
                     }
                 },
             ],
-            'Endorsement1' => 'accepted',
+            // 'Endorsement1' => 'accepted',
             'Endorsement2' => 'accepted',
             'Endorsement3' => 'accepted',
             'Endorsement4' => 'accepted',
