@@ -48,7 +48,6 @@ class AppointmentController extends Controller
         $isTableNotEmpty = $appointments->isNotEmpty();
         return view('dashboard.allAppointment', ['appointments' => $appointments, 'isTableNotEmpty' => $isTableNotEmpty]);
     }
-
     public function deleteAllAppointment()
     {
 
@@ -56,8 +55,6 @@ class AppointmentController extends Controller
         Session::flash('success', 'تم حذف جميع االايميلات بنجاح.');
         return redirect()->back();
     }
-
-    
     public function exportAppointmentsToExcel()
     {
         $appointments = Appointment::all(); // Replace YourModel with the actual model you're using
@@ -98,9 +95,8 @@ class AppointmentController extends Controller
                 'clientSecret' => $paymentIntent->client_secret
             ];
 
-        } catch (\Exception $e) {
-            // console . log($e);
-            dd($e);
+        } catch (Exception $e) {
+            console . log($e);
         }
     }
 
@@ -248,7 +244,7 @@ class AppointmentController extends Controller
             'Endorsement3' => 'accepted',
             'Endorsement4' => 'accepted',
             'Endorsement5' => 'accepted',
-        ], 
+        ],
       );
 
         if ($validator->fails()) {
@@ -272,13 +268,13 @@ class AppointmentController extends Controller
         //     'action' => 'required|string',
         //     'duplicated_appointment_date' => 'required_if:action,duplicated|date',
         //     'test_type' => 'required_if:action,new|string',
-         
+
         // ]);
 
         // if ($validator->fails()) {
         //     return response()->json([
         //         'errors' => $validator->errors()
-        //     ], 422); 
+        //     ], 422);
         // }
         // dd($request->all());
         $appointment = duplicated_appointment::where('appointment_date', $request->duplicated_appointment_date)->first();
