@@ -211,7 +211,7 @@
                     @csrf
                     <div class="form-group mb-3">
                         <label>الاسم رباعي باللغة العربية *</label>
-                        <input class="form-control" name="ar_name" type="text">
+                        <input class="form-control form-input" name="ar_name" type="text">
                     </div>
                     @if ($errors->has('ar_name'))
                         <div class="alert alert-danger">
@@ -220,7 +220,7 @@
                     @endif
                     <div class="form-group mb-3">
                         <label>الاسم رباعي باللغة الانجليزية *</label>
-                        <input id="english_name" class="form-control" name="en_name" type="text">
+                        <input id="english_name" class="form-control form-input" name="en_name" type="text">
                     </div>
                     @if ($errors->has('en_name'))
                         <div class="alert alert-danger">
@@ -229,7 +229,7 @@
                     @endif
                     <div class="form-group mb-3">
                         <label>الرقم الأكاديمي *</label>
-                        <input class="form-control" name="academic_num" type="text">
+                        <input class="form-control form-input" name="academic_num" type="text">
                     </div>
                     @if ($errors->has('academic_num'))
                         <div class="alert alert-danger">
@@ -238,7 +238,7 @@
                     @endif
                     <div class="form-group mb-3">
                         <label for="exampleInputEmail1">البريد الالكتروني الأكاديمي *</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <input type="email" class="form-control form-input" id="exampleInputEmail1" aria-describedby="emailHelp"
                             name="email"
                             placeholder="اكتب البريد الإلكتروني الذي تسجل دخولك به على المنصة مثال XXXXXXXX@anasacademy.uk ">
                         <small id="emailHelp" class="form-text text-muted"></small>
@@ -250,7 +250,7 @@
                     @endif
                     <div class="form-group mb-3">
                         <label>رقم الجوال *</label><br>
-                        <input type="tel" id="phone" class="form-control" name="phone">
+                        <input type="tel" id="phone" class="form-control form-input" name="phone">
                         <input type="hidden" id="countryCode" name="country_code">
                     </div>
 
@@ -261,7 +261,7 @@
                     @endif
                     <div class="form-group mb-3">
                         <label>في اي دولة ؟ *</label>
-                        <input class="form-control" name="country" type="text">
+                        <input class="form-control form-input" name="country" type="text">
                     </div>
                     @if ($errors->has('country'))
                         <div class="alert alert-danger">
@@ -270,7 +270,7 @@
                     @endif
                     <div class="form-group mb-3">
                         <label>في اي مدينة ؟ *</label>
-                        <input class="form-control" name="city" type="text">
+                        <input class="form-control form-input" name="city" type="text">
                     </div>
                     @if ($errors->has('city'))
                         <div class="alert alert-danger">
@@ -280,28 +280,28 @@
                     <div class="form-group mb-3">
                         <label for="exampleFormControlSelect2"> الدبلوم المسجل فيه *</label>
                         <div>
-                            <input class="form-check-input" type="radio" name="diploma"
+                            <input class="form-input form-check-input" type="radio" name="diploma"
                                 value="التصميم المرئي و واجهة المستخدم" id="flexRadioDefault10">
                             <label class="form-check-label mr-4" for="flexRadioDefault10">
                                 التصميم المرئي و واجهة المستخدم
                             </label>
                         </div>
                         <div>
-                            <input class="form-check-input" type="radio" name="diploma"
+                            <input class="form-input form-check-input" type="radio" name="diploma"
                                 value="التصميم المرئي و التسويق رقمي" id="flexRadioDefault20">
                             <label class="form-check-label mr-4" for="flexRadioDefault20">
                                 التصميم المرئى و التسويق رقمي
                             </label>
                         </div>
                         <div>
-                            <input class="form-check-input" type="radio" name="diploma"
+                            <input class="form-input form-check-input" type="radio" name="diploma"
                                 value="التصميم المرئي و الرسوم متحركة" id="flexRadioDefault30">
                             <label class="form-check-label mr-4" for="flexRadioDefault30">
                                 التصميم المرئي و الرسوم متحركة
                             </label>
                         </div>
                         <div>
-                            <input class="form-check-input" type="radio" name="diploma"
+                            <input class="form-input form-check-input" type="radio" name="diploma"
                                 value="التصميم المرئي و التفكير التصميمي" id="flexRadioDefault30">
                             <label class="form-check-label mr-4" for="flexRadioDefault30">
                                 التصميم المرئي و التفكير التصميمي
@@ -309,7 +309,7 @@
                         </div>
 
                         <div>
-                            <input class="form-check-input" type="radio" name="diploma"
+                            <input class="form-input form-check-input" type="radio" name="diploma"
                                 value="دبلوم عالي في الرسوم المتحركة ومؤثرات الصوت والفيديو" id="flexRadioDefault30">
                             <label class="form-check-label mr-4" for="flexRadioDefault30">
                                 دبلوم عالي في الرسوم المتحركة ومؤثرات الصوت والفيديو
@@ -317,7 +317,7 @@
                         </div>
 
                         <div>
-                            <input class="form-check-input" type="radio" name="diploma"
+                            <input class="form-input form-check-input" type="radio" name="diploma"
                                 value="دبلوم عالي في التصميم المرئي للعلامة التجارية" id="flexRadioDefault30">
                             <label class="form-check-label mr-4" for="flexRadioDefault30">
                                 دبلوم عالي في التصميم المرئي للعلامة التجارية
@@ -328,12 +328,12 @@
                     <div class="form-group mb-3" id="action">
                         <label for="example1">نوع الحجز</label>
                         <div>
-                            <input class="form-check-input" type="radio" name="action" id="flexRadio11"
+                            <input class="form-input form-check-input" type="radio" name="action" id="flexRadio11"
                                 value="new">
                             <label class="form-check-label mr-4" for="flexRadio11">حجز موعد جلسة اختبار</label>
                         </div>
                         <div>
-                            <input class="form-check-input" type="radio" name="action" id="flexRadio12"
+                            <input class="form-input form-check-input" type="radio" name="action" id="flexRadio12"
                                 value="duplicated">
                             <label class="form-check-label mr-4" for="flexRadio12">حجز موعد للإعادة</label>
                         </div>
@@ -342,7 +342,7 @@
 
                     <div class="form-group mb-3" id="DublicatedDates" style="display: none;">
                         <label for="example02">مواعيد اعاده الاختبار </label>
-                        <select class="form-control" name="duplicated_appointment_date" id="example02">
+                        <select class="form-control form-input form-check-input" name="duplicated_appointment_date" id="example02">
                             @foreach ($duplicated_appointments as $item)
                                 <option>
                                     {!! str_replace(' ', '&ensp;', $item->appointment_date) !!}
@@ -357,28 +357,28 @@
                         <div class="form-group mb-3" id="testType">
                             <label for="exampleFormControlSelect2">حدد الاختبار *</label>
                             <div>
-                                <input class="form-check-input" type="radio" name="test_type"
+                                <input class="form-input form-check-input" type="radio" name="test_type"
                                     value="photoshop_illustrator" id="flexRadioDefault11">
                                 <label class="form-check-label mr-4" for="flexRadioDefault11">
                                     فوتوشوب و اليستريتور
                                 </label>
                             </div>
                             <div>
-                                <input class="form-check-input" type="radio" name="test_type"
+                                <input class="form-input form-check-input" type="radio" name="test_type"
                                     value="photoshop_design" id="flexRadioDefault12">
                                 <label class="form-check-label mr-4" for="flexRadioDefault12">
                                     فوتوشوب وإن ديزاين
                                 </label>
                             </div>
                             <div>
-                                <input class="form-check-input" type="radio" name="test_type" value="other"
+                                <input class="form-input form-check-input" type="radio" name="test_type" value="other"
                                     id="otherType">
                                 <label class="form-check-label mr-4" for="flexRadioDefault13">
                                     أرغب في اختبار واحد فقط ولن أتقدم للاختبار الثاني
                                 </label>
                             </div>
                             <div id="selectContainer" style="display: none;" class="mt-3 mb-3">
-                                <select class="form-control" id="testSelect">
+                                <select class="form-control form-input form-check-input" id="testSelect">
                                     <option value="" selected disabled hidden>حدد الاختبار</option>
                                     <option value="photoshop">فوتوشوب</option>
                                     <option value="illustrator">اليستريتور</option>
@@ -388,7 +388,7 @@
                         </div>
                         <div class="form-group mb-3" id="photoshopDates" style="display: none;">
                             <label for="exampleFormControlSelect2">مواعيد اختبار الفوتوشوب</label>
-                            <select class="form-control" name="photoshop_appointment_date"
+                            <select class="form-control form-input form-check-input" name="photoshop_appointment_date"
                                 id="exampleFormControlSelect2">
                                 @foreach ($photoshop_appointments as $item)
                                     <option>
@@ -403,7 +403,7 @@
 
                         <div class="form-group mb-3" id="illustratorDates" style="display: none;">
                             <label for="exampleFormControlSelect23">مواعيد اختبار الاليستريتور</label>
-                            <select class="form-control" name="illustrator_appointment_date"
+                            <select class="form-control form-input form-check-input" name="illustrator_appointment_date"
                                 id="exampleFormControlSelect23">
                                 @foreach ($illustrator_appointments as $item)
                                     <option>
@@ -417,7 +417,7 @@
                         </div>
                         <div class="form-group mb-3" id="designDates" style="display: none;">
                             <label for="exampleFormControlSelect24">مواعيد اختبار ان ديزاين</label>
-                            <select class="form-control" name="design_appointment_date"
+                            <select class="form-control form-input form-check-input" name="design_appointment_date"
                                 id="exampleFormControlSelect24" style="white-space: pre;">
                                 @foreach ($design_appointments as $item)
                                     <option>
@@ -450,7 +450,7 @@
                     <div class="form-group mb-3">
                         <p>إقرار *</p>
                         {{-- <div class="">
-                            <input class="form-check-input " type="checkbox" name="Endorsement1" value="1"
+                            <input class="form-input " type="checkbox" name="Endorsement1" value="1"
                                 id="defaultCheck1">
                             <label class="form-check-label mr-4" for="defaultCheck1">أقر بأني أعلم أنه لن يتم اعتماد
                                 أي حجز أو
@@ -462,7 +462,7 @@
                             </div>
                         @endif --}}
 
-                            <input class="form-check-input " type="checkbox" name="Endorsement2" value="1"
+                            <input class="form-input form-check-input " type="checkbox" name="Endorsement2" value="1"
                                 id="defaultCheck2">
                             <label class="form-check-label mr-4" for="defaultCheck1">
                                 أقر بأن لدي حساب على Certiport للدخول للاختبار الذي حجزت موعده وأنني قد تأكدت أن البريد
@@ -476,7 +476,7 @@
                             </div>
                         @endif
                         <div class="form-group ">
-                            <input class="form-check-input" type="checkbox" name="Endorsement3" value="1"
+                            <input class="form-input form-check-input" type="checkbox" name="Endorsement3" value="1"
                                 id="defaultCheck3">
                             <label class="form-check-label mr-4" for="defaultCheck1">
                                 أقر بأني أعلم أنه سيتم اعتماد حجزي الأول وجدولته في كل الأحوال وعند عدم الحضور للحجز
@@ -489,7 +489,7 @@
                             </div>
                         @endif
                         <div class="form-group ">
-                            <input class="form-check-input" type="checkbox" name="Endorsement4" value="1"
+                            <input class="form-input form-check-input" type="checkbox" name="Endorsement4" value="1"
                                 id="defaultCheck4">
                             <label class="form-check-label mr-4" for="defaultCheck1">
 
@@ -507,7 +507,7 @@
                     <div class="form-group mb-3">
                         <label>تعهد *</label>
                         <div>
-                            <input class="form-check-input " type="checkbox" name="Endorsement5" value="1"
+                            <input class="form-input form-check-input" type="checkbox" name="Endorsement5" value="1"
                                 id="defaultCheck5">
                             <label class="form-check-label mr-4" for="defaultCheck1">أتعهد وأوافق بأن جميع البيانات
                                 المدخلة صحيحة، وأكاديمية أنس غير مسؤولة عن عدم صحة البيانات
@@ -856,12 +856,13 @@
         function show_errors(errors) {
     // Remove any existing error messages
     document.querySelectorAll('.error-message').forEach(el => el.remove());
-
+       console.log("test");
     // Remove 'border-danger' class from all inputs
-    document.querySelectorAll('.form-check-input').forEach(input => {
+    document.querySelectorAll('.form-input').forEach(input => {
         input.classList.remove('border-danger');
+        console.log(input);
     });
-
+    console.log("test2");
     for (const [key, value] of Object.entries(errors)) {
         const input = document.querySelector(`[name="${key}"]`);
         if (input) {
