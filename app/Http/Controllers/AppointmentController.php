@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\AppointmentsExport;
 use App\Mail\appointmentMail;
+use App\Models\After_effect_appointment;
+use App\Models\Premiere_appointment;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cookie;
 
@@ -35,7 +37,17 @@ class AppointmentController extends Controller
         $photoshop_appointments = photoshop_appointment::get();
         $design_appointments = design_appointment::get();
         $duplicated_appointments = duplicated_appointment::get();
-        return view('appointments.allAppointment', ['illustrator_appointments' => $illustrator_appointments, 'photoshop_appointments' => $photoshop_appointments, 'design_appointments' => $design_appointments, 'duplicated_appointments' => $duplicated_appointments]);
+        $after_effect_appointments = After_effect_appointment::get();
+        $premiere_appointments = Premiere_appointment::get();
+        // dd( $after_effect_appointments);
+        return view('appointments.allAppointment', 
+        ['illustrator_appointments' => $illustrator_appointments,
+         'photoshop_appointments' => $photoshop_appointments, 
+         'design_appointments' => $design_appointments, 
+         'duplicated_appointments' => $duplicated_appointments,
+         'after_effect_appointments' => $after_effect_appointments,
+         'premiere_appointments'=>$premiere_appointments
+        ]);
     }
 
 
@@ -134,12 +146,23 @@ class AppointmentController extends Controller
                         $this->Photoshop($form_data);
                     } elseif ($form_data['test_type'] == 'design') {
                         $this->Design($form_data);
-                    } elseif ($form_data['test_type'] == 'photoshop_design') {
+                    } 
+                    elseif ($form_data['test_type'] == 'after_effect') {
+                        $this->AfterEffect($form_data);
+                    }elseif ($form_data['test_type'] == 'premiere') {
+                        $this->Premiere($form_data);
+                    }elseif ($form_data['test_type'] == 'photoshop_design') {
                         $this->Photoshop($form_data);
                         $this->Design($form_data);
+                    } elseif ($form_data['test_type'] == 'photoshop_after_effect') {
+                        $this->Photoshop($form_data);
+                        $this->AfterEffect($form_data);
                     } elseif ($form_data['test_type'] == 'photoshop_illustrator') {
                         $this->Photoshop($form_data);
                         $this->Illustrator($form_data);
+                    }elseif ($form_data['test_type'] == 'photoshop_premiere') {
+                        $this->Photoshop($form_data);
+                        $this->Premiere($form_data);
                     }
                 } else {
                     Session::flash('error', 'test_type is not set. يُرجى التواصل مع وحدة الاختبارات الاحترافية عبر support@anasacademy.uk');
@@ -227,11 +250,35 @@ class AppointmentController extends Controller
                     }
                 },
             ],
+            'after_effect_appointment_date' => [
+                function ($attribute, $value, $fail) use ($request) {
+                    $test_type = $request->test_type;
+                    $action = $request->action;
+                    $appointment = After_effect_appointment::where('appointment_date', $value)->first();
+                    if ($action == 'new' && ($test_type == 'after_effect' || $test_type == 'photoshop_after_effect') && !$appointment) {
+                        $fail(trans('appointment.The selected After Effect appointment date is invalid.'));
+                    } elseif ($action == 'new' && ($test_type == 'after_effect' || $test_type == 'photoshop_after_effect') && $appointment && $appointment->user_count == 0) {
+                        $fail(trans('appointment.The selected After Effect appointment date is fully booked.'));
+                    }
+                },
+            ],
+            'premiere_appointment_date' => [
+                function ($attribute, $value, $fail) use ($request) {
+                    $test_type = $request->test_type;
+                    $action = $request->action;
+                    $appointment = Premiere_appointment::where('appointment_date', $value)->first();
+                    if ($action == 'new' && ($test_type == 'premiere' || $test_type == 'photoshop_premiere') && !$appointment) {
+                        $fail(trans('appointment.The selected premiere appointment date is invalid.'));
+                    } elseif ($action == 'new' && ($test_type == 'premiere' || $test_type == 'photoshop_premiere') && $appointment && $appointment->user_count == 0) {
+                        $fail(trans('appointment.The selected premiere appointment date is fully booked.'));
+                    }
+                },
+            ],
             'duplicated_appointment_date' => [
                 'required_if:action,duplicated',
                 function ($attribute, $value, $fail) use ($request) {
                     $action = $request->action;
-                    $appointment = duplicated_appointment::where('appointment_date', $value)->first();
+                    $appointment = After_effect_appointment::where('appointment_date', $value)->first();
                     if ($action == 'duplicated' && !$appointment) {
                         $fail(trans('appointment.The selected duplicated appointment date is invalid.'));
                     } elseif ($action == 'duplicated' && $appointment && $appointment->user_count == 0) {
@@ -239,6 +286,8 @@ class AppointmentController extends Controller
                     }
                 },
             ],
+           
+           
             // 'Endorsement1' => 'accepted',
             'Endorsement2' => 'accepted',
             'Endorsement3' => 'accepted',
@@ -340,6 +389,85 @@ class AppointmentController extends Controller
         // $appointment = substr($appointment, 0, -9);
         Mail::to($request['email'])->send(new appointmentMail($appointment, $request['test_type']));
         Session::flash('ill_confirmation_message', 'تم تأكيد موعدك لاختبار الاليستريتور بنجاح في تاريخ ' . $request['illustrator_appointment_date'] . '، يُرجى تصوير الشاشة للحفاظ على تأكيد الموعد.');
+        // }
+        // else if(!$email)
+        // {
+        //     Session::flash('error',' يُرجى التأكد من البريد المدخل أنه صحيح، في حالة تأكدك من ذلك وظهور نفس المشكلة يُرجى التواصل مع وحدة الاختبارات الاحترافية عبر PTU@anasacademy.uk');
+        // }
+        // elseif ($email->appointment_count == 1 ) {
+
+        //     Session::flash('error','لديك موعد سابق لا يمكن إتمام الحجز الرجاء الالتزام بالموعد الذي اخترته');
+        // }
+        // elseif ($appointment->user_count == 0 ) {
+        //     Session::flash('error','لقد تم الوصول للحد الاقصي المسموح به ف هذا الموعد يرجي اختيار موعد اخر');
+
+        // }
+
+    }
+
+    private function AfterEffect($request)
+    {
+        $appointment = After_effect_appointment::where('appointment_date', $request['after_effect_appointment_date'])->first();
+
+        Appointment::create([
+            'ar_name' => $request['ar_name'],
+            'en_name' => $request['en_name'],
+            'academic_num' => $request['academic_num'],
+            'phone' => $request['phone'],
+            'country' => $request['country'],
+            'city' => $request['city'],
+            'diploma' => $request['diploma'],
+            'type' => $request['action'],
+            'test_type' => 'after_effect',
+            'email' => $request['email'],
+            'appointment_date' => $request['after_effect_appointment_date'],
+        ]);
+        $appointment->update([
+            'user_count' => $appointment->user_count - 1,
+        ]);
+        $appointment = $request['after_effect_appointment_date'];
+        // $appointment = substr($appointment, 0, -9);
+        Mail::to($request['email'])->send(new appointmentMail($appointment, $request['test_type']));
+        Session::flash('after_confirmation_message', 'تم تأكيد موعدك لاختبار الأفتر افكت بنجاح في تاريخ ' . $request['after_effect_appointment_date'] . '، يُرجى تصوير الشاشة للحفاظ على تأكيد الموعد.');
+        // }
+        // else if(!$email)
+        // {
+        //     Session::flash('error',' يُرجى التأكد من البريد المدخل أنه صحيح، في حالة تأكدك من ذلك وظهور نفس المشكلة يُرجى التواصل مع وحدة الاختبارات الاحترافية عبر PTU@anasacademy.uk');
+        // }
+        // elseif ($email->appointment_count == 1 ) {
+
+        //     Session::flash('error','لديك موعد سابق لا يمكن إتمام الحجز الرجاء الالتزام بالموعد الذي اخترته');
+        // }
+        // elseif ($appointment->user_count == 0 ) {
+        //     Session::flash('error','لقد تم الوصول للحد الاقصي المسموح به ف هذا الموعد يرجي اختيار موعد اخر');
+
+        // }
+
+    }
+    private function Premiere($request)
+    {
+        $appointment = Premiere_appointment::where('appointment_date', $request['premiere_appointment_date'])->first();
+
+        Appointment::create([
+            'ar_name' => $request['ar_name'],
+            'en_name' => $request['en_name'],
+            'academic_num' => $request['academic_num'],
+            'phone' => $request['phone'],
+            'country' => $request['country'],
+            'city' => $request['city'],
+            'diploma' => $request['diploma'],
+            'type' => $request['action'],
+            'test_type' => 'premiere',
+            'email' => $request['email'],
+            'appointment_date' => $request['premiere_appointment_date'],
+        ]);
+        $appointment->update([
+            'user_count' => $appointment->user_count - 1,
+        ]);
+        $appointment = $request['premiere_appointment_date'];
+        // $appointment = substr($appointment, 0, -9);
+        Mail::to($request['email'])->send(new appointmentMail($appointment, $request['test_type']));
+        Session::flash('premiere_confirmation_message', 'تم تأكيد موعدك لاختبار البريمير بر بنجاح في تاريخ ' . $request['premiere_appointment_date'] . '، يُرجى تصوير الشاشة للحفاظ على تأكيد الموعد.');
         // }
         // else if(!$email)
         // {

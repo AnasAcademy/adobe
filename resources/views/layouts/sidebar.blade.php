@@ -52,6 +52,17 @@
                   <span class="nav-text">البريد الإلكتروني <br>Duplicated</span>
                 </a>
               </li>
+              <li>
+                <a href="after_effect_email" >
+                  <span class="nav-text">البريد الإلكتروني <br>After Effect</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="premiere_email" >
+                  <span class="nav-text">البريد الإلكتروني <br>Premiere</span>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -86,6 +97,18 @@
               <li>
                 <a href="duplicated_appointment" >
                   <span class="nav-text">موعد Duplicated</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="after_effect_appointment" >
+                  <span class="nav-text">موعد After Effect</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="premiere_appointment" >
+                  <span class="nav-text">موعد Premiere</span>
                 </a>
               </li>
             </ul>

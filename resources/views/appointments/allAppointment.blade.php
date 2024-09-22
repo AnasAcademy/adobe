@@ -164,7 +164,10 @@
             </div>
         @elseif (Session::has('ill_confirmation_message') ||
                 Session::has('photo_confirmation_message') ||
-                Session::has('design_confirmation_message'))
+                Session::has('design_confirmation_message')||
+                 Session::has('premiere_confirmation_message')||
+                 Session::has('after_confirmation_message')
+                 )
             @if (Session::has('ill_confirmation_message'))
                 <div class="overflow-hidden">
                     <p class="alert alert-success my-3 mx-3">
@@ -188,6 +191,20 @@
                     </p>
                 </div>
             @endif
+            @if (Session::has('premiere_confirmation_message'))
+            <div class="overflow-hidden">
+                <p class="alert alert-success my-3 mx-3">
+                    {{ Session::get('premiere_confirmation_message') }}
+                </p>
+            </div>
+        @endif
+        @if (Session::has('after_confirmation_message'))
+        <div class="overflow-hidden">
+            <p class="alert alert-success my-3 mx-3">
+                {{ Session::get('after_confirmation_message') }}
+            </p>
+        </div>
+    @endif
         @elseif (Session::has('error'))
             <div class="overflow-hidden">
                 <p class="alert alert-danger my-3 mx-3">
@@ -278,7 +295,7 @@
                         </div>
                     @endif
                     <div class="form-group mb-3">
-                        <label for="exampleFormControlSelect2"> الدبلوم المسجل فيه *</label>
+                        <label for="exampleFormControlSelect2">   البرنامج المسجل فيه *</label>
                         <div>
                             <input class="form-input form-check-input" type="radio" name="diploma"
                                 value="التصميم المرئي و واجهة المستخدم" id="flexRadioDefault10">
@@ -308,7 +325,16 @@
                             </label>
                         </div>
 
+
                         <div>
+                            <input class="form-input form-check-input" type="radio" name="diploma"
+                                value="دوره أدوبى ACP" id="flexRadioDefault30">
+                            <label class="form-check-label mr-4" for="flexRadioDefault30">
+                              دوره أدوبى ACP
+                            </label>
+                        </div>
+
+                        {{-- <div>
                             <input class="form-input form-check-input" type="radio" name="diploma"
                                 value="دبلوم عالي في الرسوم المتحركة ومؤثرات الصوت والفيديو" id="flexRadioDefault30">
                             <label class="form-check-label mr-4" for="flexRadioDefault30">
@@ -323,7 +349,7 @@
                                 دبلوم عالي في التصميم المرئي للعلامة التجارية
                             </label>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group mb-3" id="action">
                         <label for="example1">نوع الحجز</label>
@@ -342,7 +368,7 @@
 
                     <div class="form-group mb-3" id="DublicatedDates" style="display: none;">
                         <label for="example02">مواعيد اعاده الاختبار </label>
-                        <select class="form-control form-input form-check-input" name="duplicated_appointment_date" id="example02">
+                        <select class="form-control form-input " name="duplicated_appointment_date" id="example02">
                             @foreach ($duplicated_appointments as $item)
                                 <option>
                                     {!! str_replace(' ', '&ensp;', $item->appointment_date) !!}
@@ -371,24 +397,42 @@
                                 </label>
                             </div>
                             <div>
+                                <input class="form-input form-check-input" type="radio" name="test_type"
+                                    value="photoshop_after_effect" id="flexRadioDefault12">
+                                <label class="form-check-label mr-4" for="flexRadioDefault12">
+                                    فوتوشوب و أفتر افكت
+                                </label>
+                            </div>
+                            <div>
+                                <input class="form-input form-check-input" type="radio" name="test_type"
+                                    value="photoshop_premiere" id="flexRadioDefault12">
+                                <label class="form-check-label mr-4" for="flexRadioDefault12">
+                                    فوتوشوب و بريمير برو
+                                </label>
+                            </div>
+                            <div>
                                 <input class="form-input form-check-input" type="radio" name="test_type" value="other"
                                     id="otherType">
                                 <label class="form-check-label mr-4" for="flexRadioDefault13">
                                     أرغب في اختبار واحد فقط ولن أتقدم للاختبار الثاني
                                 </label>
                             </div>
+
+                           
                             <div id="selectContainer" style="display: none;" class="mt-3 mb-3">
-                                <select class="form-control form-input form-check-input" id="testSelect">
+                                <select class="form-control form-input " id="testSelect">
                                     <option value="" selected disabled hidden>حدد الاختبار</option>
                                     <option value="photoshop">فوتوشوب</option>
                                     <option value="illustrator">اليستريتور</option>
                                     <option value="design">ان ديزاين</option>
+                                    <option value="after_effect">أفتر افكت</option>
+                                    <option value="premiere">بريمير برو</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group mb-3" id="photoshopDates" style="display: none;">
                             <label for="exampleFormControlSelect2">مواعيد اختبار الفوتوشوب</label>
-                            <select class="form-control form-input form-check-input" name="photoshop_appointment_date"
+                            <select class="form-control form-input " name="photoshop_appointment_date"
                                 id="exampleFormControlSelect2">
                                 @foreach ($photoshop_appointments as $item)
                                     <option>
@@ -403,7 +447,7 @@
 
                         <div class="form-group mb-3" id="illustratorDates" style="display: none;">
                             <label for="exampleFormControlSelect23">مواعيد اختبار الاليستريتور</label>
-                            <select class="form-control form-input form-check-input" name="illustrator_appointment_date"
+                            <select class="form-control form-input " name="illustrator_appointment_date"
                                 id="exampleFormControlSelect23">
                                 @foreach ($illustrator_appointments as $item)
                                     <option>
@@ -417,9 +461,40 @@
                         </div>
                         <div class="form-group mb-3" id="designDates" style="display: none;">
                             <label for="exampleFormControlSelect24">مواعيد اختبار ان ديزاين</label>
-                            <select class="form-control form-input form-check-input" name="design_appointment_date"
+                            <select class="form-control form-input " name="design_appointment_date"
                                 id="exampleFormControlSelect24" style="white-space: pre;">
                                 @foreach ($design_appointments as $item)
+                                    <option>
+                                        {!! str_replace(' ', '&ensp;', $item->appointment_date) !!}
+                                        @if ($item->user_count === 0)
+                                            (العدد مكتمل)
+                                        @endif
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        {{-- @dump($after_effect_appointments) --}}
+                        <div class="form-group mb-3" id="afterDates" style="display: none;">
+                            <label for="exampleFormControlSelect25">مواعيد اختبار أفتر افكت</label>
+                            <select class="form-control form-input " name="after_effect_appointment_date"
+                                id="exampleFormControlSelect25" style="white-space: pre;">
+                                
+                                @foreach ($after_effect_appointments as $item)
+                                    <option>
+                                        {!! str_replace(' ', '&ensp;', $item->appointment_date) !!}
+                                        @if ($item->user_count === 0)
+                                            (العدد مكتمل)
+                                        @endif
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3" id="premiereDates" style="display: none;">
+                            <label for="exampleFormControlSelect26">مواعيد اختبار بريمير برو</label>
+                            <select class="form-control form-input " name="premiere_appointment_date"
+                                id="exampleFormControlSelect25" style="white-space: pre;">
+                                @foreach ($premiere_appointments as $item)
                                     <option>
                                         {!! str_replace(' ', '&ensp;', $item->appointment_date) !!}
                                         @if ($item->user_count === 0)
@@ -558,15 +633,19 @@
     <script>
         var photoshopDatesDiv = document.getElementById("photoshopDates");
         var illustratorDatesDiv = document.getElementById("illustratorDates");
+        var afterDatesDiv = document.getElementById("afterDates");
+        var premiereDatesDiv = document.getElementById("premiereDates");
         var designDatesDiv = document.getElementById("designDates");
         var otherType = document.getElementById("otherType");
         document.querySelectorAll('input[name="test_type"]').forEach(function(radio) {
             radio.addEventListener('change', function() {
                 if (this.checked && (this.value === 'other' || this.value === 'photoshop' || this.value ===
-                        'illustrator' || this.value === 'design')) {
+                        'illustrator' || this.value === 'design' || this.value === 'after_effect' ||this.value === 'premiere') ) {
                     document.getElementById('selectContainer').style.display = 'block';
                     illustratorDatesDiv.style.display = 'none';
                     designDatesDiv.style.display = 'none';
+                    afterDatesDiv.style.display = 'none';
+                    premiereDatesDiv.style.display = 'none';
                 } else {
                     document.getElementById('selectContainer').style.display = 'none';
                 }
@@ -580,12 +659,30 @@
                 photoshopDatesDiv.style.display = 'block';
                 illustratorDatesDiv.style.display = 'none';
                 designDatesDiv.style.display = 'none';
+                afterDatesDiv.style.display = 'none';
+                premiereDatesDiv.style.display = 'none';
             } else if (selectedValue !== null && selectedValue == 'illustrator') {
                 illustratorDatesDiv.style.display = 'block';
                 photoshopDatesDiv.style.display = 'none';
                 designDatesDiv.style.display = 'none';
+                afterDatesDiv.style.display = 'none';
+                premiereDatesDiv.style.display = 'none';
             } else if (selectedValue !== null && selectedValue == 'design') {
                 designDatesDiv.style.display = 'block';
+                photoshopDatesDiv.style.display = 'none';
+                illustratorDatesDiv.style.display = 'none';
+                afterDatesDiv.style.display = 'none';
+                premiereDatesDiv.style.display = 'none';
+            }else if (selectedValue !== null && selectedValue == 'after_effect') {
+                afterDatesDiv.style.display = 'block';
+                premiereDatesDiv.style.display = 'none';
+                designDatesDiv.style.display = 'none';
+                photoshopDatesDiv.style.display = 'none';
+                illustratorDatesDiv.style.display = 'none';
+            }else if (selectedValue !== null && selectedValue == 'premiere') {
+                premiereDatesDiv.style.display = 'block';
+                afterDatesDiv.style.display = 'none';
+                designDatesDiv.style.display = 'none';
                 photoshopDatesDiv.style.display = 'none';
                 illustratorDatesDiv.style.display = 'none';
             }
@@ -599,6 +696,8 @@
         var photoshopDatesDiv = document.getElementById("photoshopDates");
         var illustratorDatesDiv = document.getElementById("illustratorDates");
         var designDatesDiv = document.getElementById("designDates");
+        var afterDatesDiv = document.getElementById("afterDates");
+        var premiereDatesDiv = document.getElementById("premiereDates");
 
         document.querySelectorAll('input[name="test_type"]').forEach(function(radio) {
 
@@ -612,14 +711,32 @@
                 photoshopDatesDiv.style.display = 'block';
                 illustratorDatesDiv.style.display = 'block';
                 designDatesDiv.style.display = 'none';
+                afterDatesDiv.style.display = 'none';
+                premiereDatesDiv.style.display = 'none';
             } else if (option.value !== null && option.value === 'photoshop_design') {
                 photoshopDatesDiv.style.display = 'block';
                 illustratorDatesDiv.style.display = 'none';
                 designDatesDiv.style.display = 'block';
-            } else {
+                afterDatesDiv.style.display = 'none';
+                premiereDatesDiv.style.display = 'none';
+            } else if (option.value !== null && option.value === 'photoshop_after_effect') {
+                photoshopDatesDiv.style.display = 'block';
+                illustratorDatesDiv.style.display = 'none';
+                designDatesDiv.style.display = 'none';
+                afterDatesDiv.style.display = 'block';
+                premiereDatesDiv.style.display = 'none';
+            }else if (option.value !== null && option.value === 'photoshop_premiere') {
+                photoshopDatesDiv.style.display = 'block';
+                illustratorDatesDiv.style.display = 'none';
+                designDatesDiv.style.display = 'none';
+                premiereDatesDiv.style.display = 'block';
+                afterDatesDiv.style.display = 'none';
+            }else {
                 photoshopDatesDiv.style.display = 'none';
                 illustratorDatesDiv.style.display = 'none';
                 designDatesDiv.style.display = 'none';
+                premiereDatesDiv.style.display = 'none';
+                afterDatesDiv.style.display = 'none';
             }
         }
 
@@ -631,6 +748,12 @@
             } else if (defaultCheckedRadio.value === 'photoshop_design') {
                 photoshopDatesDiv.style.display = 'block';
                 designDatesDiv.style.display = 'block';
+            }else if (defaultCheckedRadio.value === 'photoshop_after_effect') {
+                photoshopDatesDiv.style.display = 'block';
+                afterDatesDiv.style.display = 'block';
+            }else if (defaultCheckedRadio.value === 'photoshop_premiere') {
+                photoshopDatesDiv.style.display = 'block';
+                premiereDatesDiv.style.display = 'block';
             }
         }
     </script>
@@ -748,6 +871,8 @@
             var test_type = document.querySelector('input[name="test_type"]:checked');
             var action = document.querySelector('input[name="action"]:checked');
             var photoshop_appointment_date = document.getElementsByName('photoshop_appointment_date')[0];
+            var after_effect_appointment_date= document.getElementsByName('after_effect_appointment_date')[0];
+            var premiere_appointment_date= document.getElementsByName('premiere_appointment_date')[0];
             var illustrator_appointment_date = document.getElementsByName('illustrator_appointment_date')[0];
             var design_appointment_date = document.getElementsByName('design_appointment_date')[0];
             var duplicated_appointment_date = document.getElementsByName('duplicated_appointment_date')[0];
@@ -767,6 +892,8 @@
             formDate.append("test_type", test_type?.value ?? "");
             formDate.append("action", action?.value ?? "");
             formDate.append("photoshop_appointment_date", photoshop_appointment_date.value);
+            formDate.append("after_effect_appointment_date", after_effect_appointment_date.value);
+            formDate.append("premiere_appointment_date", premiere_appointment_date.value);
             formDate.append("illustrator_appointment_date", illustrator_appointment_date.value);
             formDate.append("design_appointment_date", design_appointment_date.value);
             formDate.append("duplicated_appointment_date", duplicated_appointment_date.value);

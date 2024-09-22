@@ -10,6 +10,8 @@ return [
     'The selected duplicated appointment date is invalid.'=>"موعد اعاده الاختبار المحدد غير صحيح",
     'The selected design appointment date is invalid.'=>"موعد اختبار ان ديزاين غير صحيح",
     'The selected Illustrator appointment date is invalid.'=>"موعد اختبار الإليستريتور المحدد غير صحيح",
+    'The selected After Effect appointment date is invalid.'=>"موعد اختبار الأفتر افكت المحدد غير صحيح",
+    'The selected Premiere appointment date is invalid.'=>"موعد اختبار البريمير برو المحدد غير صحيح",
     'The selected photoshop appointment date is invalid.'=>"موعد اختبار الفوتوشوب غير صحيح"
 
-];
+]
